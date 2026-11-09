@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أضيفي بلاغاً عن غرض مفقود أو موجود في كلية تقنية المعلومات بجامعة مصراتة.">
+
+    <title>إضافة بلاغ | لُقطة</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/report.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        const savedTheme = localStorage.getItem("luqta-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span>لُقطة</span>
+                <small>Luqta</small>
+            </a>
+
+            <nav class="nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="index.html#lost">المفقودات</a>
+                <a href="index.html#found">الموجودات</a>
+                <a href="auth.html" class="login-btn">تسجيل الدخول</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Report Page -->
+    <main class="report-page">
+        <div class="container">
+
+            <div class="report-heading">
+                <span class="section-label">Luqta Platform</span>
+                <h1>إضافة بلاغ جديد</h1>
+                <p>
+                    ساهمي في إعادة المفقودات إلى أصحابها،
+                    أو أخبرينا عن غرض عثرتِ عليه داخل الكلية.
+                </p>
+            </div>
+
+            <!-- Report Form -->
+            <form class="report-form" id="report-form">
+
+                <!-- Report Type -->
+                <div class="form-section">
+                    <h2>01. نوع البلاغ</h2>
+                    <p>اختاري نوع البلاغ المناسب لحالتك.</p>
+
+                    <div class="type-options">
+
+                        <label class="type-option">
+                            <input
+                                type="radio"
+                                name="reportType"
+                                value="lost"
+                                checked
+                            >
+                            <span class="type-content">
+                                <span class="type-icon">🔍</span>
+                                <strong>غرض مفقود</strong>
+                                <small>أبحث عن غرض أضعته</small>
+                            </span>
+                        </label>
+
+                        <label class="type-option">
+                            <input
+                                type="radio"
+                                name="reportType"
+                                value="found"
+                            >
+                            <span class="type-content">
+                                <span class="type-icon">🤝</span>
+                                <strong>غرض موجود</strong>
+                                <small>عثرت على غرض وأريد إعادته</small>
+                            </span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- Item Information -->
+                <div class="form-section">
+                    <h2>02. معلومات الغرض</h2>
+                    <p>أدخلي تفاصيل تساعد الآخرين على تمييز الغرض.</p>
+
+                    <div class="form-grid">
+
+                        <div class="field full-width">
+                            <label for="item-name">
+                                اسم الغرض <span>*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="item-name"
+                                name="itemName"
+                                placeholder="مثلاً: هاتف سامسونج أسود"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="field">
+                            <label for="category">
+                                تصنيف الغرض <span>*</span>
+                            </label>
+                            <select id="category" name="category" required>
+                                <option value="">اختاري التصنيف</option>
+                                <option value="electronics">إلكترونيات</option>
+                                <option value="cards">بطاقات وهويات</option>
+                                <option value="bags">حقائب</option>
+                                <option value="books">كتب وملفات</option>
+                                <option value="accessories">إكسسوارات</option>
+                                <option value="clothing">ملابس</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="report-date">
+                                تاريخ الفقدان أو العثور <span>*</span>
+                            </label>
+                            <input
+                                type="date"
+                                id="report-date"
+                                name="reportDate"
+                                required
+                            >
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="description">
+                                وصف الغرض <span>*</span>
+                            </label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                rows="4"
+                                maxlength="1000"
+                                placeholder="اكتبي اللون، النوع، العلامات المميزة وأي تفاصيل أخرى..."
+                                required
+                            ></textarea>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Location and Image -->
+                <div class="form-section">
+                    <h2>03. الموقع والصورة</h2>
+                    <p>
+                        حددي مكان الفقدان أو العثور وأضيفي صورة إن توفرت.
+                    </p>
+
+                    <div class="form-grid">
+
+                        <div class="field full-width">
+                            <label for="location">
+                                الموقع داخل الكلية <span>*</span>
+                            </label>
+                            <select id="location" name="location" required>
+                                <option value="">اختاري الموقع</option>
+                                <option value="المبنى الرئيسي">المبنى الرئيسي</option>
+                                <option value="قاعات المحاضرات">قاعات المحاضرات</option>
+                                <option value="المعامل">المعامل</option>
+                                <option value="المكتبة">المكتبة</option>
+                                <option value="الممر الرئيسي">الممر الرئيسي</option>
+                                <option value="الساحة الخارجية">الساحة الخارجية</option>
+                                <option value="أخرى">مكان آخر</option>
+                            </select>
+                        </div>
+
+                        <div class="field full-width">
+                            <label for="item-image">صورة الغرض</label>
+
+                            <label class="upload-area" for="item-image">
+                                <span class="upload-icon">📷</span>
+                                <strong>اضغطي هنا لاختيار صورة</strong>
+                                <small>يمكنك إضافة صورة واضحة للغرض</small>
+                                <span id="file-name">
+                                    لم يتم اختيار صورة
+                                </span>
+                            </label>
+
+                            <input
+                                type="file"
+                                id="item-image"
+                                name="itemImage"
+                                accept="image/*"
+                                hidden
+                            >
+
+                            <small class="image-note">
+                                الصورة اختيارية، ولن يتم رفعها أو حفظها حالياً.
+                            </small>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Email Contact Consent -->
+                <div class="form-section">
+                    <h2>04. طريقة التواصل</h2>
+                    <p>
+                        اختاري إذا كنتِ تسمحين للآخرين بالتواصل معك عبر بريد حسابك.
+                    </p>
+
+                    <label class="email-consent">
+                        <input
+                            type="checkbox"
+                            id="allow-email-contact"
+                            name="allowEmailContact"
+                        >
+                        <span>
+                            أسمح بالتواصل معي عبر البريد الإلكتروني المرتبط بحسابي.
+                        </span>
+                    </label>
+
+                    <small>
+                        لن يظهر بريدك الإلكتروني للعامة، وسيكون متاحاً للمستخدمين
+                        المسجلين فقط عند موافقتك.
+                    </small>
+                </div>
+
+                <!-- Privacy Note -->
+                <div class="form-note">
+                    <span>🛡️</span>
+                    <p>
+                        احرصي على عدم نشر بيانات شخصية أو معلومات حساسة
+                        مثل كلمات المرور أو أرقام البطاقات الخاصة.
+                    </p>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <a href="index.html" class="cancel-btn">
+                        إلغاء
+                    </a>
+
+                    <button type="submit" class="submit-btn">
+                        نشر البلاغ ←
+                    </button>
+                </div>
+
+                <!-- Form Message -->
+                <p
+                    id="form-message"
+                    class="form-message"
+                    aria-live="polite"
+                ></p>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                لُقطة | Luqta
+                <span>— منصة المفقودات والموجودات</span>
+            </p>
+
+            <p>
+                كلية تقنية المعلومات - جامعة مصراتة
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script type="module" src="js/report.js"></script>
+    <script type="module" src="js/session.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسابي | لُقطة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        const savedTheme = localStorage.getItem("luqta-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+
+    <style>
+        :root {
+            --background: #f8f7fd;
+            --surface: #ffffff;
+            --text: #292341;
+            --muted: #817b8e;
+            --border: #ebe5fa;
+            --shadow: 0 4px 18px rgba(40, 20, 70, 0.05);
+            --primary: #7046c5;
+            --logout-bg: #ffffff;
+            --logout-border: #f0d7dc;
+            --logout-hover: #fff2f4;
+        }
+
+        [data-theme="dark"] {
+            --background: #171526;
+            --surface: #222036;
+            --text: #f6f2ff;
+            --muted: #aaa4bf;
+            --border: #39344f;
+            --shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+            --primary: #a58aff;
+            --logout-bg: #29263e;
+            --logout-border: #593747;
+            --logout-hover: #382638;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        header {
+            background: var(--surface);
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .header-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .account-container {
+            width: 90%;
+            max-width: 1050px;
+            margin: 45px auto;
+        }
+
+        .page-title {
+            margin-bottom: 25px;
+        }
+
+        .page-title h1 {
+            font-size: 28px;
+            color: var(--text);
+        }
+
+        .page-title p {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, #7046c5, #9875dc);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(112, 70, 197, 0.16);
+        }
+
+        .avatar {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .profile-info h2 {
+            font-size: 22px;
+        }
+
+        .profile-info p {
+            opacity: 0.9;
+            margin-top: 4px;
+            word-break: break-word;
+        }
+
+        .stats-card {
+            background: var(--surface);
+            padding: 22px;
+            border-radius: 16px;
+            margin: 25px 0 35px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .stats-card h3 {
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .stats-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 32px;
+            margin-top: 5px;
+        }
+
+        .reports-section h2 {
+            font-size: 21px;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+
+        #my-reports-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 18px;
+        }
+
+        .empty-message {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .logout-btn {
+            border: none;
+            background: var(--logout-bg);
+            color: #d34d61;
+            border: 1px solid var(--logout-border);
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: var(--logout-hover);
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 14px 5%;
+            }
+
+            .header-links {
+                gap: 10px;
+            }
+
+            .header-links a {
+                display: none;
+            }
+
+            .account-container {
+                margin: 28px auto;
+            }
+
+            .profile-card {
+                padding: 22px 17px;
+                gap: 14px;
+            }
+
+            .avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 25px;
+            }
+
+            .profile-info h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">لُقطة</a>
+
+        <div class="header-links">
+            <a href="index.html">الرئيسية</a>
+            <button class="logout-btn" onclick="logoutLuqta()">
+                تسجيل الخروج
+            </button>
+        </div>
+    </header>
+
+    <main class="account-container">
+
+        <div class="page-title">
+            <h1>حسابي الشخصي</h1>
+            <p>هنا تقدري تتابعي بياناتك والبلاغات اللي نشرتيها.</p>
+        </div>
+
+        <section class="profile-card">
+            <div class="avatar" id="user-avatar">ل</div>
+
+            <div class="profile-info">
+                <h2 id="account-name">جاري تحميل الاسم...</h2>
+                <p id="account-email">جاري تحميل البريد الإلكتروني...</p>
+            </div>
+        </section>
+
+        <section class="stats-card">
+            <h3>إجمالي البلاغات التي نشرتِها</h3>
+            <strong id="report-count">0</strong>
+        </section>
+
+        <section class="reports-section">
+            <h2>بلاغاتي</h2>
+
+            <div id="my-reports-container">
+                <div class="empty-message" id="reports-message">
+                    جاري تحميل بلاغاتك...
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="js/account.js"></script>
+    <script type="module" src="js/session.js"></script>
+
+</body>
+</html>

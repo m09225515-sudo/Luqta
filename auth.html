@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول | لُقطة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        const savedTheme = localStorage.getItem("luqta-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+
+    <style>
+        :root {
+            --background: #f8f7fd;
+            --surface: #ffffff;
+            --text: #292341;
+            --muted: #9289a8;
+            --border: #ebe5fa;
+            --input-bg: #fcfbff;
+            --tabs-bg: #f3efff;
+            --tab-text: #776b96;
+            --shadow: 0 15px 45px #30205b12;
+            --primary: #7552df;
+            --primary-dark: #6040c5;
+        }
+
+        [data-theme="dark"] {
+            --background: #171526;
+            --surface: #222036;
+            --text: #f6f2ff;
+            --muted: #aaa4bf;
+            --border: #39344f;
+            --input-bg: #29263e;
+            --tabs-bg: #302849;
+            --tab-text: #c0b5df;
+            --shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+            --primary: #a58aff;
+            --primary-dark: #8d70ef;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            transition: background 0.25s, color 0.25s;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 580px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .welcome-panel {
+            background: linear-gradient(145deg, #6849d6, #a080f3);
+            color: white;
+            padding: 55px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .welcome-panel .logo {
+            font-size: 43px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .welcome-panel h1 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-panel p {
+            font-size: 14px;
+            line-height: 2;
+            color: #f1eaff;
+        }
+
+        .welcome-icon {
+            font-size: 75px;
+            margin-top: 30px;
+        }
+
+        .form-panel {
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-panel h2 {
+            font-size: 27px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--tabs-bg);
+            padding: 5px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .tabs button {
+            width: 50%;
+            border: none;
+            padding: 12px;
+            border-radius: 9px;
+            background: transparent;
+            color: var(--tab-text);
+            font-family: inherit;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .tabs button.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: var(--input-bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 13px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form-group input::placeholder {
+            color: var(--muted);
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(128, 89, 236, 0.12);
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            font-family: inherit;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .message {
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 700px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-panel {
+                padding: 30px 20px;
+            }
+
+            .welcome-panel .logo {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .welcome-panel h1 {
+                font-size: 23px;
+            }
+
+            .welcome-icon {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="auth-container">
+
+        <section class="welcome-panel">
+            <div class="logo">لُقطة</div>
+            <h1>أهلاً بك في لُقطة 💜</h1>
+            <p>
+                مجتمع يساعدك في العثور على أغراضك المفقودة
+                وإعادة الموجودات إلى أصحابها.
+            </p>
+            <div class="welcome-icon">🔎 🎒</div>
+        </section>
+
+        <section class="form-panel">
+
+            <h2 id="form-title">إنشاء حساب</h2>
+            <p class="subtitle" id="form-subtitle">
+                انضمي إلى مجتمع لُقطة وابدئي رحلتك معنا.
+            </p>
+
+            <div class="tabs">
+                <button type="button" id="signup-tab" class="active">إنشاء حساب</button>
+                <button type="button" id="login-tab">تسجيل الدخول</button>
+            </div>
+
+            <form id="auth-form">
+
+                <div class="form-group" id="name-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input type="text" id="name" placeholder="اكتبي اسمك الكامل" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="example@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" placeholder="أدخلي كلمة المرور" minlength="6" required>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn">
+                    إنشاء حساب
+                </button>
+
+                <p class="message" id="message" aria-live="polite"></p>
+
+            </form>
+
+            <a href="index.html" class="back-link">العودة إلى الصفحة الرئيسية ←</a>
+
+        </section>
+
+    </main>
+
+    <script type="module" src="js/auth.js"></script>
+
+</body>
+</html>

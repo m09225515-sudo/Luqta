@@ -1,0 +1,290 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تفاصيل البلاغ | لُقطة</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        const savedTheme = localStorage.getItem("luqta-theme") || "light";
+        document.documentElement.setAttribute("data-theme", savedTheme);
+    </script>
+
+    <style>
+        :root {
+            --primary: #7555DC;
+            --primary-dark: #6042C5;
+            --primary-light: #A68BFF;
+            --lavender: #F0EBFF;
+            --background: #FBFAFF;
+            --surface: #FFFFFF;
+            --text: #292341;
+            --muted: #858099;
+            --border: #EBE7F5;
+            --shadow: 0 12px 35px rgba(54, 38, 105, .07);
+        }
+
+        [data-theme="dark"] {
+            --primary: #A58AFF;
+            --primary-dark: #8D70EF;
+            --primary-light: #C0AEFF;
+            --lavender: #302849;
+            --background: #171526;
+            --surface: #222036;
+            --text: #F6F2FF;
+            --muted: #AAA4BF;
+            --border: #39344F;
+            --shadow: 0 12px 35px rgba(0, 0, 0, .2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background .3s ease, color .3s ease;
+        }
+
+        header {
+            background: var(--surface);
+            padding: 16px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--border);
+            transition: background .3s ease;
+        }
+
+        .logo {
+            color: var(--primary);
+            font-size: 25px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .details-container {
+            width: 90%;
+            max-width: 850px;
+            margin: 45px auto;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            color: var(--text);
+            font-size: 28px;
+        }
+
+        .page-heading p {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .details-card {
+            background: var(--surface);
+            color: var(--text);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: background .3s ease, color .3s ease;
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .item-icon {
+            width: 85px;
+            height: 85px;
+            border-radius: 18px;
+            background: var(--lavender);
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .item-heading h2 {
+            color: var(--text);
+            font-size: 23px;
+            margin: 10px 0 5px;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 5px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .lost-type {
+            color: #d35b70;
+            background: rgba(211, 91, 112, .12);
+        }
+
+        .found-type {
+            color: #23865a;
+            background: rgba(35, 134, 90, .12);
+        }
+
+        .details-section {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .details-section h3 {
+            color: var(--primary);
+            font-size: 17px;
+            margin-bottom: 12px;
+        }
+
+        .details-section p {
+            color: var(--muted);
+            line-height: 2;
+            font-size: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-section {
+            margin-top: 25px;
+            padding: 22px;
+            border-radius: 15px;
+            background: var(--lavender);
+            border: 1px solid var(--border);
+        }
+
+        .contact-section h3 {
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .contact-section p {
+            color: var(--muted);
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 11px 22px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: background .2s ease;
+        }
+
+        .contact-button:hover {
+            background: var(--primary-dark);
+        }
+
+        .loading-message,
+        .error-message {
+            background: var(--surface);
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .error-message {
+            color: #d35b70;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 14px 5%;
+            }
+
+            .details-container {
+                margin: 28px auto;
+            }
+
+            .details-card {
+                padding: 20px;
+            }
+
+            .item-icon {
+                width: 65px;
+                height: 65px;
+                font-size: 30px;
+            }
+
+            .item-heading h2 {
+                font-size: 19px;
+            }
+
+            .page-heading h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="index.html" class="logo">لُقطة</a>
+        <a href="index.html" class="back-link">← العودة للرئيسية</a>
+    </header>
+
+    <main class="details-container">
+
+        <div class="page-heading">
+            <h1>تفاصيل البلاغ</h1>
+            <p>كل المعلومات المتعلقة بالغرض المفقود أو الموجود.</p>
+        </div>
+
+        <div id="details-container">
+            <div class="loading-message">
+                جاري تحميل تفاصيل البلاغ...
+            </div>
+        </div>
+
+    </main>
+
+    <script type="module" src="js/details.js"></script>
+    <script type="module" src="js/session.js"></script>
+
+</body>
+</html>

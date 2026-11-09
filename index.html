@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>لُقطة | Luqta</title>
+    <meta name="description" content="منصة ذكية للمفقودات والموجودات - كلية تقنية المعلومات، جامعة مصراتة">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: calc(100% - 32px) !important;
+            max-width: 1200px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .hero-content {
+            display: block;
+            width: 100%;
+        }
+
+        .hero-text {
+            width: 100%;
+            max-width: 760px;
+            margin-inline: auto;
+        }
+
+        .features.container,
+        .reports.container,
+        .matching.container {
+            width: calc(100% - 32px) !important;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 700px) {
+            .features {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero {
+                padding: 40px 0 55px;
+            }
+
+            .hero h1 {
+                font-size: clamp(32px, 8vw, 43px);
+            }
+
+            .hero-text > p {
+                font-size: 13px;
+            }
+
+            .hero-buttons {
+                flex-wrap: wrap;
+            }
+
+            .hero-buttons a {
+                flex: 1 1 130px;
+            }
+
+            .section-heading {
+                flex-wrap: wrap;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .found-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">
+                    <svg viewBox="0 0 48 48" fill="none">
+                        <path d="M24 4C14.6 4 7 11.6 7 21c0 12 17 23 17 23s17-11 17-23C41 11.6 33.4 4 24 4Z" fill="currentColor"/>
+                        <circle cx="23" cy="20" r="8" stroke="white" stroke-width="3"/>
+                        <path d="m29 26 7 7" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+                    </svg>
+                </span>
+                <span class="logo-name">
+                    لُقطة
+                    <small>Luqta</small>
+                </span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="#home" class="active">الرئيسية</a>
+                <a href="#lost">المفقودات</a>
+                <a href="#found">الموجودات</a>
+                <a href="#matching">المطابقة الذكية</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-toggle" aria-label="تغيير المظهر">
+                    <span id="theme-icon">☾</span>
+                </button>
+                <a href="auth.html" class="login-btn">تسجيل الدخول</a>
+                <a href="auth.html" class="signup-btn">إنشاء حساب</a>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero" id="home">
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-label">أهلاً بك في لُقطة</span>
+
+                    <h1>
+                        أغراضك ضاعت؟
+                        <span>تلقاها هنا.</span>
+                    </h1>
+
+                    <p>
+                        منصة ذكية تجمع المفقودات والموجودات
+                        في كلية تقنية المعلومات - جامعة مصراتة.
+                    </p>
+
+                    <div class="search-box">
+                        <input
+                            type="search"
+                            id="home-search"
+                            placeholder="ابحث عن غرض... هاتف، حقيبة، بطاقة..."
+                        >
+                        <button id="search-btn" type="button">بحث</button>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="report.html" class="primary-btn">أبلغ عن مفقود</a>
+                        <a href="report.html?type=found" class="secondary-btn">وجدت غرضاً</a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="features container">
+
+            <div class="feature-card">
+                <span>🔎</span>
+                <h3>بحث سريع</h3>
+                <p>اعثر على غرضك بسهولة.</p>
+            </div>
+
+            <div class="feature-card">
+                <span>✨</span>
+                <h3>مطابقة ذكية</h3>
+                <p>اقتراح بلاغات متشابهة.</p>
+            </div>
+
+            <div class="feature-card">
+                <span>🛡️</span>
+                <h3>خصوصية وأمان</h3>
+                <p>حماية بيانات المستخدمين.</p>
+            </div>
+
+            <div class="feature-card">
+                <span>🎓</span>
+                <h3>مخصصة للكلية</h3>
+                <p>للطلبة وأعضاء هيئة التدريس والموظفين.</p>
+            </div>
+
+        </section>
+
+        <section class="reports container" id="lost">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">تابع آخر المستجدات</span>
+                    <h2>الأغراض المفقودة</h2>
+                    <p>أغراض يبحث أصحابها عنها داخل الكلية.</p>
+                </div>
+
+                <a href="report.html">أضف بلاغاً ←</a>
+            </div>
+
+            <div class="reports-grid" id="lost-reports-container">
+                <p class="loading-message">جاري تحميل البلاغات...</p>
+            </div>
+
+        </section>
+
+        <section class="reports container" id="found">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-label">ساعد غيرك في العثور على غرضه</span>
+                    <h2>الأغراض الموجودة</h2>
+                    <p>أغراض عثر عليها أفراد الكلية.</p>
+                </div>
+
+                <a href="report.html?type=found">أضف بلاغ موجودات ←</a>
+            </div>
+
+            <div class="reports-grid" id="found-reports-container">
+                <p class="loading-message">جاري تحميل البلاغات...</p>
+            </div>
+
+            <div class="found-banner">
+                <div>
+                    <span>مساعدة بسيطة تصنع فرقاً 💜</span>
+                    <h3>وجدت غرضاً لا يخصك؟</h3>
+                    <p>ساهم في إعادته إلى صاحبه من خلال نشر بلاغ جديد.</p>
+                </div>
+
+                <a href="report.html?type=found" class="primary-btn">
+                    أضف بلاغ موجودات
+                </a>
+            </div>
+
+        </section>
+
+        <section class="matching container" id="matching">
+
+            <div class="matching-content">
+                <span>ميزة لُقطة المميزة ✨</span>
+
+                <h2>يمكن غرضك موجود بالفعل!</h2>
+
+                <p>
+                    تساعدك المطابقة الذكية في العثور على
+                    بلاغات مشابهة لغرضك المفقود.
+                </p>
+
+                <a href="#found" class="primary-btn">
+                    اكتشف الأغراض الموجودة
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h2>لُقطة | Luqta</h2>
+            <p>منصة ذكية للمفقودات والموجودات</p>
+            <p>كلية تقنية المعلومات - جامعة مصراتة</p>
+            <small>© 2026 Luqta - جميع الحقوق محفوظة</small>
+        </div>
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/session.js"></script>
+
+</body>
+</html>
