@@ -48,7 +48,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 115px;
 }
 
 body {
@@ -575,10 +575,7 @@ button {
     font-size: 13px;
 }
 
-/* =========================================
-   Report card - بطاقة البلاغ
-========================================= */
-
+/* Report card */
 .report-card {
     width: 100%;
     min-width: 0;
@@ -598,7 +595,6 @@ button {
     transform: translateY(-5px);
 }
 
-/* مساحة الرمز أعلى البطاقة */
 .report-image {
     position: relative;
     width: 100%;
@@ -644,7 +640,6 @@ button {
         var(--surface-soft);
 }
 
-/* رمز الغرض */
 .item-emoji {
     position: relative;
     z-index: 1;
@@ -659,7 +654,6 @@ button {
     font-size: 38px;
 }
 
-/* شارة مفقود أو موجود */
 .report-type {
     position: absolute;
     top: 13px;
@@ -681,7 +675,6 @@ button {
     background: #E5F7EF;
 }
 
-/* محتويات البطاقة */
 .report-info {
     width: 100%;
     min-width: 0;
@@ -938,13 +931,14 @@ button {
     }
 
     .navbar {
-        min-height: 70px;
+        min-height: auto;
         flex-wrap: wrap;
         gap: 8px;
-        padding-block: 9px;
+        padding-block: 10px;
     }
 
     .logo {
+        order: 1;
         gap: 7px;
     }
 
@@ -958,11 +952,8 @@ button {
         font-size: 22px;
     }
 
-    .nav-links {
-        display: none;
-    }
-
     .nav-actions {
+        order: 2;
         gap: 6px;
     }
 
@@ -977,6 +968,37 @@ button {
     .signup-btn {
         padding: 8px 10px;
         font-size: 10px;
+    }
+
+    /* روابط التنقل في سطر مستقل تحت الشعار */
+    .nav-links {
+        order: 3;
+        display: flex;
+        flex: 0 0 100%;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 2px 3px;
+        border-top: 1px solid var(--border);
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        flex: 0 0 auto;
+        padding: 5px 0;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    .nav-links a::after {
+        bottom: -2px;
+        height: 2px;
     }
 
     .hero {
@@ -1030,6 +1052,7 @@ button {
     }
 
     .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 11px;
         margin-top: -27px;
         padding-bottom: 10px;
@@ -1190,6 +1213,14 @@ button {
 
     .report-meta span {
         font-size: 10px;
+    }
+
+    .nav-links {
+        gap: 6px;
+    }
+
+    .nav-links a {
+        font-size: 9px;
     }
 }
 
