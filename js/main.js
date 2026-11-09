@@ -1,3 +1,4 @@
+
 import { db } from "./firebase.js";
 
 import {
@@ -153,7 +154,7 @@ function displayReports(reports) {
             createTextElement(
                 "p",
                 "loading-message",
-                "لا توجد بلاغات مفقودات حالياً."
+                "لا توجد بلاغات مفقودات مطابقة حالياً."
             )
         );
     } else {
@@ -167,12 +168,40 @@ function displayReports(reports) {
             createTextElement(
                 "p",
                 "loading-message",
-                "لا توجد بلاغات موجودات حالياً."
+                "لا توجد بلاغات موجودات مطابقة حالياً."
             )
         );
     } else {
         foundReports.forEach(report => {
             foundContainer.appendChild(createReportCard(report));
+        });
+    }
+}
+
+// الانتقال تلقائياً إلى قسم نتائج البحث
+function scrollToSearchResults(reports) {
+    const hasLostReports = reports.some(
+        report => report.type === "lost"
+    );
+
+    const hasFoundReports = reports.some(
+        report => report.type === "found"
+    );
+
+    let targetSection;
+
+    if (hasLostReports) {
+        targetSection = document.getElementById("lost");
+    } else if (hasFoundReports) {
+        targetSection = document.getElementById("found");
+    } else {
+        targetSection = document.getElementById("lost");
+    }
+
+    if (targetSection) {
+        targetSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
     }
 }
@@ -227,7 +256,7 @@ async function loadReports() {
 }
 
 // البحث في البلاغات
-function searchReports() {
+function searchReports(shouldScroll = false) {
     if (!searchInput) return;
 
     const searchText = searchInput.value.trim().toLowerCase();
@@ -250,20 +279,30 @@ function searchReports() {
     });
 
     displayReports(filteredReports);
+
+    // الانتقال للنتائج عند الضغط على زر البحث أو Enter فقط
+    if (shouldScroll) {
+        scrollToSearchResults(filteredReports);
+    }
 }
 
-// تشغيل البحث إذا كانت عناصره موجودة
+// تشغيل البحث عند الضغط على الزر
 if (searchButton) {
-    searchButton.addEventListener("click", searchReports);
+    searchButton.addEventListener("click", () => {
+        searchReports(true);
+    });
 }
 
+// البحث المباشر أثناء الكتابة
 if (searchInput) {
-    searchInput.addEventListener("input", searchReports);
+    searchInput.addEventListener("input", () => {
+        searchReports(false);
+    });
 
     searchInput.addEventListener("keydown", event => {
         if (event.key === "Enter") {
             event.preventDefault();
-            searchReports();
+            searchReports(true);
         }
     });
 }
